@@ -12,8 +12,11 @@ public class Weapon : MonoBehaviour
 	public float fireRate = 0;
 	public float damage = 10;
 	public LayerMask whatToHit;
+	public Transform BulletTrailPrefab;
 
 	private float _timeToFire = 0f;
+	private float _timeToSpawnEffect = 0f;
+	public float effectSpawnRate = 10f;
 	public float weaponRaycastRange = 100f;
 
 	private Transform _firePoint;
@@ -54,13 +57,23 @@ public class Weapon : MonoBehaviour
 		Vector2 firePointPosition = new Vector2(_firePoint.position.x, _firePoint.position.y);
 
 		RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, weaponRaycastRange, whatToHit);
+		if(Time.time >= _timeToSpawnEffect)
+		{
+			Effect();
+			_timeToSpawnEffect = Time.time + 1/effectSpawnRate;
+		}
 
 		Debug.DrawLine(firePointPosition, (mousePosition-firePointPosition)*weaponRaycastRange, Color.cyan);
 
 		if(hit.collider != null)
 		{
 			Debug.DrawLine(firePointPosition, hit.point, Color.red);
-			Debug.Log("We hit" + hit.collider.name + " and did " + damage + " damage.");
+			Debug.Log("We hit " + hit.collider.name + " and did " + damage + " damage.");
 		}	
+	}
+
+	void Effect()
+	{
+		Instantiate(BulletTrailPrefab, _firePoint.position, _firePoint.rotation);
 	}
 }

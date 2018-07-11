@@ -836,6 +836,8 @@ MonoBehaviour:
   whatToHit:
     serializedVersion: 2
     m_Bits: 4294967035
+  BulletTrailPrefab: {fileID: 4135941893762810, guid: 94231ba781623394eb6ae0c9091767de,
+    type: 2}
   weaponRaycastRange: 100
 --- !u!1 &1346754259
 GameObject:
