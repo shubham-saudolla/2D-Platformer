@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 1286620860}
   - component: {fileID: 1286620861}
   - component: {fileID: 1286620862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -838,6 +838,9 @@ MonoBehaviour:
     m_Bits: 4294967035
   BulletTrailPrefab: {fileID: 4135941893762810, guid: 94231ba781623394eb6ae0c9091767de,
     type: 2}
+  muzzleFlashPrefab: {fileID: 4374576887496196, guid: 8587e683505e42242b755492c31ea754,
+    type: 2}
+  effectSpawnRate: 10
   weaponRaycastRange: 100
 --- !u!1 &1346754259
 GameObject:
@@ -1020,7 +1023,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1571524599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

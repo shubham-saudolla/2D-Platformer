@@ -13,12 +13,11 @@ public class Weapon : MonoBehaviour
 	public float damage = 10;
 	public LayerMask whatToHit;
 	public Transform BulletTrailPrefab;
-
+	public Transform muzzleFlashPrefab;
 	private float _timeToFire = 0f;
 	private float _timeToSpawnEffect = 0f;
 	public float effectSpawnRate = 10f;
 	public float weaponRaycastRange = 100f;
-
 	private Transform _firePoint;
 
 	void Awake()
@@ -53,10 +52,10 @@ public class Weapon : MonoBehaviour
 	void Shoot()
 	{
 		Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y );
-
 		Vector2 firePointPosition = new Vector2(_firePoint.position.x, _firePoint.position.y);
 
 		RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, weaponRaycastRange, whatToHit);
+
 		if(Time.time >= _timeToSpawnEffect)
 		{
 			Effect();
@@ -75,5 +74,11 @@ public class Weapon : MonoBehaviour
 	void Effect()
 	{
 		Instantiate(BulletTrailPrefab, _firePoint.position, _firePoint.rotation);
+
+		Transform clone = Instantiate(muzzleFlashPrefab, _firePoint.position, _firePoint.rotation) as Transform;	//typecasting
+		clone.parent = _firePoint;
+		float size = Random.Range(0.6f, 0.9f);
+		clone.localScale = new Vector3(size, size, size);
+		Destroy(clone.gameObject, 0.03f);
 	}
 }
