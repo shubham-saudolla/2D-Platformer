@@ -18,6 +18,8 @@ public class EnemyAI : MonoBehaviour
 	//how many times we will update our path per second
 	public float updateRate = 2f;
 
+	public string playerTag;
+
 	//caching
 	private Seeker _seeker;
 	private Rigidbody2D _rb;
@@ -39,6 +41,8 @@ public class EnemyAI : MonoBehaviour
 	//waypoint we are currently moving towards
 	private int _currentWaypoint;
 
+	private bool _searchingForPlayer = false;
+
 	void Start()
 	{
 		_seeker = GetComponent<Seeker>();
@@ -46,7 +50,11 @@ public class EnemyAI : MonoBehaviour
 
 		if(target == null)
 		{
-			Debug.Log("No player found.");
+			if(!_searchingForPlayer)
+			{
+				_searchingForPlayer = true;
+				StartCoroutine(SearchForPlayer());
+			}
 			return;
 		}
 
@@ -54,6 +62,25 @@ public class EnemyAI : MonoBehaviour
 		_seeker.StartPath(transform.position, target.position, onPathComplete);
 
 		StartCoroutine(UpdatePath());
+	}
+
+	public IEnumerator SearchForPlayer()
+	{
+		GameObject sResult =  GameObject.FindGameObjectWithTag(playerTag);
+
+		if(sResult == null)
+		{
+			yield return new WaitForSeconds((0.5f));
+
+			StartCoroutine(SearchForPlayer());
+		}
+		else
+		{
+			target = sResult.transform;
+			_searchingForPlayer = false;
+			StartCoroutine(UpdatePath());
+			yield return false;
+		}
 	}
 
 	public void onPathComplete(Path p)
@@ -72,6 +99,11 @@ public class EnemyAI : MonoBehaviour
 	{
 		if(target == null)
 		{
+			if(!_searchingForPlayer)
+			{
+				_searchingForPlayer = true;
+				StartCoroutine(SearchForPlayer());
+			}
 			yield return false;
 		}
 
@@ -87,6 +119,11 @@ public class EnemyAI : MonoBehaviour
 	{
 		if(target == null)
 		{
+			if(!_searchingForPlayer)
+			{
+				_searchingForPlayer = true;
+				StartCoroutine(SearchForPlayer());
+			}
 			return;
 		}
 
