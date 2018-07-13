@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114394207060698552}
   - component: {fileID: 114973001805473020}
   - component: {fileID: 58616473378244352}
+  - component: {fileID: 114686720643876412}
   m_Layer: 0
   m_Name: AlienSpaceship
   m_TagString: Untagged
@@ -105,6 +106,19 @@ MonoBehaviour:
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask: -1
+--- !u!114 &114686720643876412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1430837059808042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704964cd4d4001f47a682a48d47ce671, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    health: 100
 --- !u!114 &114973001805473020
 MonoBehaviour:
   m_ObjectHideFlags: 1
