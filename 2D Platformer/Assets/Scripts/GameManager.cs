@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
 		StartCoroutine(RespawnPlayer());
 	}
 
+	public void KillEnemy(Enemy enemy)
+	{
+		Destroy(enemy.gameObject);
+	}
+
 	public IEnumerator RespawnPlayer()
 	{
 		AudioManager.instance.Play("SpawnCountdown");
