@@ -20,6 +20,7 @@ public class Weapon : MonoBehaviour
 	public float effectSpawnRate = 10f;
 	public float weaponRaycastRange = 100f;
 	private Transform _firePoint;
+	public float camShakeAmount = 0.1f;
 
 	void Awake()
 	{
@@ -119,5 +120,8 @@ public class Weapon : MonoBehaviour
 		float size = Random.Range(0.6f, 0.9f);
 		clone.localScale = new Vector3(size, size, size);
 		Destroy(clone.gameObject, 0.03f);
+
+		//shake the camera
+		CameraShake.instance.Shake(camShakeAmount, 0.2f);
 	}
 }
