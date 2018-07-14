@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	
 	public EnemyStats stats = new EnemyStats();
 
 	[Header("Optional:")]
