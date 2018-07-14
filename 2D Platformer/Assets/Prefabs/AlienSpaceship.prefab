@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 114686720643876412}
   m_Layer: 0
   m_Name: AlienSpaceship
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,8 +249,8 @@ MonoBehaviour:
     damage: 40
   deathParticles: {fileID: 1651540852811724, guid: b4856bbcda0b5fa43bbc348e2007b163,
     type: 2}
-  shakeAmount: 0.1
-  shakeLength: 0.1
+  shakeAmount: 0.3
+  shakeLength: 0.2
   statusIndicator: {fileID: 114089944130436572}
 --- !u!114 &114764017508512930
 MonoBehaviour:
