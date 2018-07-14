@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
 			set{ _curHealth = Mathf.Clamp(value, 0, maxHealth); }
 		}
 
+		public int damage = 40;
+
 		public void init()
 		{
 			curHealth = maxHealth;
@@ -55,6 +57,17 @@ public class Enemy : MonoBehaviour
 		if(statusIndicator != null)
 		{
 			statusIndicator.SetHealth(stats.curHealth, stats.maxHealth);
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D colInfo)
+	{
+		Player _player = colInfo.collider.GetComponent<Player>();
+
+		if(_player != null)
+		{
+			_player.DamagePlayer(stats.damage);
+			GameManager.instance.KillEnemy(this);
 		}
 	}
 }
