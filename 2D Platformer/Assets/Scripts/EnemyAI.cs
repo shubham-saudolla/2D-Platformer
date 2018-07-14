@@ -158,5 +158,4 @@ public class EnemyAI : MonoBehaviour
 			return;
 		}
 	}
-
 }

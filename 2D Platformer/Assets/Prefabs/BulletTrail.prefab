@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366636321452732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 3.05, z: 0}
+  m_LocalPosition: {x: 0.01, y: 3.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,7 +90,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: -1, y: 0, z: 0}
-  - {x: 5.68, y: 0, z: 1}
+  - {x: 8.41, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 0.05
@@ -111,15 +111,15 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0.023529412}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 1, g: 0.5638793, b: 0, a: 1}
+      key1: {r: 1, g: 0.5647059, b: 0, a: 1}
+      key2: {r: 1, g: 0.5647059, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 11175
+      ctime0: 0
       ctime1: 65535
       ctime2: 65535
       ctime3: 0
@@ -127,7 +127,7 @@ LineRenderer:
       ctime5: 0
       ctime6: 0
       ctime7: 0
-      atime0: 16591
+      atime0: 0
       atime1: 65535
       atime2: 0
       atime3: 0
@@ -143,5 +143,5 @@ LineRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
