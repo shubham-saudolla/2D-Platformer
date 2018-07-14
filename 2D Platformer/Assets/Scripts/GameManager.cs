@@ -38,7 +38,10 @@ public class GameManager : MonoBehaviour
 
 	public void KillEnemy(Enemy enemy)
 	{
+		GameObject _clone = Instantiate(enemy.deathParticles, enemy.transform.position, enemy.transform.rotation) as GameObject;
+		CameraShake.instance.Shake(enemy.shakeAmount, enemy.shakeLength);
 		Destroy(enemy.gameObject);
+		Destroy(_clone, 5f);
 	}
 
 	public IEnumerator RespawnPlayer()

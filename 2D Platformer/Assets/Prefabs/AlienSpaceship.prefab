@@ -247,6 +247,10 @@ MonoBehaviour:
   stats:
     maxHealth: 100
     damage: 40
+  deathParticles: {fileID: 1651540852811724, guid: b4856bbcda0b5fa43bbc348e2007b163,
+    type: 2}
+  shakeAmount: 0.1
+  shakeLength: 0.1
   statusIndicator: {fileID: 114089944130436572}
 --- !u!114 &114764017508512930
 MonoBehaviour:

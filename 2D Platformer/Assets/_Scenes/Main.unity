@@ -645,6 +645,16 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1474996007}
+    - target: {fileID: 114686720643876412, guid: a880c765af956d8409fba335c9f24c78,
+        type: 2}
+      propertyPath: shakeAmount
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114686720643876412, guid: a880c765af956d8409fba335c9f24c78,
+        type: 2}
+      propertyPath: shakeLength
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a880c765af956d8409fba335c9f24c78, type: 2}
   m_IsPrefabParent: 0
