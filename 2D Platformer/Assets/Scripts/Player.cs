@@ -35,6 +35,21 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private StatusIndicator _statusIndicator;
 
+	//there were multiple instances of the player prefab, thus implemented a singleton pattern
+	public static Player instance;
+
+	void Awake()
+	{
+		if(instance == null)
+		{
+			instance = this;
+		}
+		else
+		{
+			Destroy(this.gameObject);
+		}
+	}
+
 	void Start()
 	{
 		stats.init();
