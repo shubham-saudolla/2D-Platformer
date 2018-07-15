@@ -287,7 +287,9 @@ MonoBehaviour:
   target: {fileID: 0}
   updateRate: 2
   playerTag: Player
-  speed: 600
+  speed: 0
+  minSpeed: 675
+  maxSpeed: 750
   fMode: 0
   pathHasEnded: 0
   nextWaypointDistance: 3

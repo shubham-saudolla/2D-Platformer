@@ -27,8 +27,9 @@ public class EnemyAI : MonoBehaviour
 	//the calculated path
 	public Path path;
 
-	//the AI's speed per second
-	public float speed =  300f;
+	public float speed;
+	public float minSpeed = 675f;
+	public float maxSpeed = 750f;
 
 	public ForceMode2D fMode;
 
@@ -42,6 +43,11 @@ public class EnemyAI : MonoBehaviour
 	private int _currentWaypoint;
 
 	private bool _searchingForPlayer = false;
+
+	void Awake()
+	{
+		speed = Random.Range(minSpeed, maxSpeed);
+	}
 
 	void Start()
 	{
@@ -127,8 +133,6 @@ public class EnemyAI : MonoBehaviour
 			return;
 		}
 
-		//TODO: always look at player
-
 		if(_currentWaypoint >= path.vectorPath.Count)
 		{
 			if(pathHasEnded)
@@ -146,7 +150,7 @@ public class EnemyAI : MonoBehaviour
 		//direction to the next waypoint
 		Vector3 dir = (path.vectorPath[_currentWaypoint] - transform.position).normalized;
 
-		dir *= speed*Time.fixedDeltaTime;
+		dir *= (speed*Time.fixedDeltaTime);
 
 		//move the AI
 		_rb.AddForce(dir, fMode);

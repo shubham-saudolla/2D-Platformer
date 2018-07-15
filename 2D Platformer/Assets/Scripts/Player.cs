@@ -32,6 +32,8 @@ public class Player : MonoBehaviour
 
 	public int fallBoundary = -20;
 
+	public GameObject playerDeathParticles;
+
 	[SerializeField]
 	private StatusIndicator _statusIndicator;
 
