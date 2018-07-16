@@ -116,7 +116,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  timeBetweenWaves: 5
+  timeBetweenWaves: 4
 --- !u!114 &114847504234728242
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,7 +10,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 	public float fireRate = 0;
-	public int damage = 10;
+	public int damage = 25;
 	public LayerMask whatToHit;
 	public Transform BulletTrailPrefab;
 	public Transform muzzleFlashPrefab;

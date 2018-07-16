@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 60
-  damage: 10
+  damage: 25
   whatToHit:
     serializedVersion: 2
     m_Bits: 4294967035
@@ -545,6 +545,7 @@ MonoBehaviour:
   stats:
     maxHealth: 100
   fallBoundary: -20
+  playerDeathParticles: {fileID: 0}
   _statusIndicator: {fileID: 114854597624791566}
 --- !u!114 &114953511172254182
 MonoBehaviour:

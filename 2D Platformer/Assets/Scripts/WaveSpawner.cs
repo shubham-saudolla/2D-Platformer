@@ -1,16 +1,9 @@
-﻿/*
-Copyright (c) Shubham Saudolla
-https://github.com/shubham-saudolla
-*/
-
+﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class WaveSpawner : MonoBehaviour
-{
-	[System.Serializable]
-	public enum SpawnState {Spawning, Waiting, Counting};
+public class WaveSpawner : MonoBehaviour {
+
+	public enum SpawnState { SPAWNING, WAITING, COUNTING };
 
 	[System.Serializable]
 	public class Wave
@@ -22,31 +15,46 @@ public class WaveSpawner : MonoBehaviour
 	}
 
 	public Wave[] waves;
+	private int nextWave = 0;
+	public int NextWave
+	{
+		get { return nextWave + 1; }
+	}
+
 	public Transform[] spawnPoints;
 
-	private int nextWave = 0;
 	public float timeBetweenWaves = 5f;
-	private float waveCountdown = 0f;
+	private float waveCountdown;
+	public float WaveCountdown
+	{
+		get { return waveCountdown; }
+	}
 
 	private float searchCountdown = 1f;
 
-	private SpawnState state = SpawnState.Counting;
+	private SpawnState state = SpawnState.COUNTING;
+	public SpawnState State
+	{
+		get { return state; }
+	}
 
 	void Start()
 	{
+		if (spawnPoints.Length == 0)
+		{
+			Debug.LogError("No spawn points referenced.");
+		}
+
 		waveCountdown = timeBetweenWaves;
 	}
 
 	void Update()
 	{
-		if(state == SpawnState.Waiting)
+		if (state == SpawnState.WAITING)
 		{
-			//check if enemies are still alive
-			if(!EnemyIsAlive())
+			if (!EnemyIsAlive())
 			{
-				//begin a new round
 				WaveCompleted();
-				return;
 			}
 			else
 			{
@@ -54,12 +62,11 @@ public class WaveSpawner : MonoBehaviour
 			}
 		}
 
-		if(waveCountdown <= 0)
+		if (waveCountdown <= 0)
 		{
-			if(state != SpawnState.Spawning)
+			if (state != SpawnState.SPAWNING)
 			{
-				//start spawning now
-				StartCoroutine(SpawnWave(waves[nextWave]));
+				StartCoroutine( SpawnWave ( waves[nextWave] ) );
 			}
 		}
 		else
@@ -70,67 +77,58 @@ public class WaveSpawner : MonoBehaviour
 
 	void WaveCompleted()
 	{
-		Debug.Log("Wave completed.");
+		Debug.Log("Wave Completed!");
 
-		state = SpawnState.Counting;
+		state = SpawnState.COUNTING;
 		waveCountdown = timeBetweenWaves;
 
-		if(nextWave + 1 > waves.Length - 1)
+		if (nextWave + 1 > waves.Length - 1)
 		{
 			nextWave = 0;
-			Debug.Log("Completed all waves. Looping...");
+			Debug.Log("ALL WAVES COMPLETE! Looping...");
 		}
 		else
 		{
 			nextWave++;
-		}		
+		}
 	}
 
 	bool EnemyIsAlive()
 	{
 		searchCountdown -= Time.deltaTime;
-
-		if(searchCountdown <= 0f)
+		if (searchCountdown <= 0f)
 		{
 			searchCountdown = 1f;
-
-			if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+			if (GameObject.FindGameObjectWithTag("Enemy") == null)
 			{
 				return false;
 			}
 		}
-
 		return true;
 	}
 
-	public IEnumerator SpawnWave(Wave _wave)
+	IEnumerator SpawnWave(Wave _wave)
 	{
-		state = SpawnState.Spawning;
+		Debug.Log("Spawning Wave: " + _wave.name);
+		state = SpawnState.SPAWNING;
 
-		//spawn
-		Debug.Log("Spawning wave " + _wave.name);
-
-		for(int i = 0; i < _wave.count; i++)
+		for (int i = 0; i < _wave.count; i++)
 		{
 			SpawnEnemy(_wave.enemy);
-			yield return new WaitForSeconds(1f / _wave.rate);
+			yield return new WaitForSeconds( 1f/_wave.rate );
 		}
 
-		state = SpawnState.Waiting;
+		state = SpawnState.WAITING;
 
 		yield break;
 	}
 
 	void SpawnEnemy(Transform _enemy)
 	{
-		Debug.Log("Spawning enemy " + _enemy.name);
+		Debug.Log("Spawning Enemy: " + _enemy.name);
 
-		if(spawnPoints.Length == 0)
-		{
-			Debug.LogError("No spawn point reference.");
-		}
-
-		Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+		Transform _sp = spawnPoints[ Random.Range (0, spawnPoints.Length) ];
 		Instantiate(_enemy, _sp.position, _sp.rotation);
 	}
+
 }
